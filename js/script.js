@@ -66,16 +66,16 @@ document.querySelector('.super-stats').addEventListener('change', e => {
       if(eTarget.checked){
       // 8) If the `clicked` checkbox is `checked`,
       // use dot notation to set the `disabled` property of `checkboxes[i]` to true
-        checkboxes[i].setAttribute("disabled",'true');
+        checkboxes[i].disabled = true;
         // console.log(checkboxes[i]);
 
       }
       else{
       // 9) Else, set the `disabled` property of `checkboxes[i]` to false
-        checkboxes[i].setAttribute("disabled","false");
+        checkboxes[i].disabled = false;
 
       }
-      checkAll(checkboxType, eTarget, clickedType);
+      // checkAll(checkboxType, eTarget, clickedType);
     }
   }
 
@@ -88,16 +88,16 @@ document.querySelector('.super-stats').addEventListener('change', e => {
 });
 
 
-function checkAll(checkboxType, eTarget, clickedType){
-  if(eTarget.checked === false){
-    for(let i = 0; i < checkboxes.length; i++){
-      console.log(checkboxes[i].checked);
-      checkboxes[i].setAttribute("disabled","false");
+// function checkAll(checkboxType, eTarget, clickedType){
+//   if(eTarget.checked === false){
+//     for(let i = 0; i < checkboxes.length; i++){
+//       console.log(checkboxes[i].checked);
+//       checkboxes[i].setAttribute("disabled","false");
 
 
-    }
-  }
-}
+//     }
+//   }
+// }
 
 // Don't touch ↓↓↓ Handles tab index for checkbox parent labels
 [...checkboxes].forEach((cb) => {
