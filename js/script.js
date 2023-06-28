@@ -44,23 +44,30 @@ document.querySelector('.super-stats').addEventListener('change', e => {
 
   // 4) Loop over the checkbox input elements
   for(let i = 0; i < checkboxes.length; i++){
-    // 5) In the loop, create a variable named `checkboxType` to store the `data-type` attribute of the `checkboxes[i]` in the loop's current iteration = `checkboxes[i].getAttribute('data-type');`
+    // 5) In the loop, create a variable named `checkboxType`
+    // to store the `data-type` attribute of the `checkboxes[i]`
+    // in the loop's current iteration = `checkboxes[i].getAttribute('data-type');`
     let checkboxType = checkboxes[i].getAttribute('data-type');
-    console.log(checkboxType);
-    // 6) Create an `if` statement to check which items to disable/enable.  The if statement needs two conditions: 
-    //    - We only want to disable/enable the item if it has the same 'data-ype' as the item that was checked/unchecked, 
+    // console.log(checkboxType);
+    // 6) Create an `if` statement to check which items to disable/enable. 
+    //    - The if statement needs two conditions: 
+    //    - We only want to disable/enable the item if it has the 
+    //    - same 'data-ype' as the item that was checked/unchecked, 
     //    - So check if the checkboxType and the clickedType variables equal
     //    AND
     //    - We don't want to disable/enable the checkbox that was just clicked
-    //    - So check that the clicked checkbox is not the checkbox in the loop's current iteration
-    //    - These two conditions will look something like this - `(clickedType === checkboxType && clicked !== checkboxes[i])`
+    //    - So check that the clicked checkbox is not the checkbox in the loop's
+    //    - current iteration
+    //    - These two conditions will look something like this -
+    //    - `(clickedType === checkboxType && clicked !== checkboxes[i])`
     if(checkboxType === clickedType && eTarget !== checkboxes[i]){
       // 7) In the `if` statement, create an `if/else` statement to check if the clicked checkbox is checked or unchecked
       //    - That condition will look something like this - `(clicked.checked)`;
       if(eTarget.checked){
-      // 8) If the `clicked` checkbox is `checked`, use dot notation to set the `disabled` property of `checkboxes[i]` to true
+      // 8) If the `clicked` checkbox is `checked`,
+      // use dot notation to set the `disabled` property of `checkboxes[i]` to true
         checkboxes[i].setAttribute("disabled",'true');
-        console.log(checkboxes[i]);
+        // console.log(checkboxes[i]);
 
       }
       else{
@@ -68,14 +75,29 @@ document.querySelector('.super-stats').addEventListener('change', e => {
         checkboxes[i].setAttribute("disabled","false");
 
       }
+      checkAll(checkboxType, eTarget, clickedType);
     }
   }
+
+
   /* Helpful log statement to test that the listener is working - feel free to delete this or comment it out */
   console.log("The checkboxes' change event listener is functional!");
 
   // Don't touch ↓↓↓ Handles disabled styles for checkbox parent labels
   [...checkboxes].forEach(cb => (cb.disabled) ? cb.parentElement.classList.add('disabled') : cb.parentElement.classList.remove('disabled'));
 });
+
+
+function checkAll(checkboxType, eTarget, clickedType){
+  if(eTarget.checked === false){
+    for(let i = 0; i < checkboxes.length; i++){
+      console.log(checkboxes[i].checked);
+      checkboxes[i].setAttribute("disabled","false");
+
+
+    }
+  }
+}
 
 // Don't touch ↓↓↓ Handles tab index for checkbox parent labels
 [...checkboxes].forEach((cb) => {
